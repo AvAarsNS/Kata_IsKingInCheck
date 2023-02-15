@@ -1,0 +1,1 @@
+# Kata Kata_IsKingInCheck
