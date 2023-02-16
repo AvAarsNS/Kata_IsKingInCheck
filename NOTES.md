@@ -61,8 +61,14 @@
 ✔ King is at (1,1) -> 1
 ✔ King is at (6,3) -> 6
 ## Which column is the king at?
-King is at (1,1) -> 1
-King is at (6,3) -> 3
+✔️King is at (1,1) -> 1
+✔️King is at (6,3) -> 3
 
 King is at (4,4), pawn is at (3,3), king can be taken
 King is at (4,4), pawn is at (3,4), king can not be taken
+
+## Check if a pawn can take the king
+✔️King is at (4,4), pawn is at (3,3), king can be taken
+✔️King is at (4,4), pawn is at (3,4), king can not be taken
+✔️King is at (4,4), pawn is at (3,5), king can be taken
+✔️King is at (0,4), pawn is at (1,3), king can not be taken

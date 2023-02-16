@@ -28,18 +28,44 @@ describe("This test suite checks the IsKingInCheck functionality", () => {
       ];
       expect(isKingInCheck(board)).toEqual(true);
     });
-    // it("When the pawn can not take the king, the king is not in check", () => {
-    //   const board = [
-    //     [" ", " ", " ", " ", " ", " ", " ", " "],
-    //     [" ", " ", " ", " ", " ", " ", " ", " "],
-    //     [" ", " ", " ", "P", " ", " ", " ", " "],
-    //     [" ", " ", " ", "K", " ", " ", " ", " "],
-    //     [" ", " ", " ", " ", " ", " ", " ", " "],
-    //     [" ", " ", " ", " ", " ", " ", " ", " "],
-    //     [" ", " ", " ", " ", " ", " ", " ", " "],
-    //     [" ", " ", " ", " ", " ", " ", " ", " "],
-    //   ];
-    //   expect(isKingInCheck(board)).toEqual(false);
-    // });
+    it("When the pawn can not take the king, the king is not in check", () => {
+      const board = [
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", "P", " ", " ", " ", " "],
+        [" ", " ", " ", "K", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+      ];
+      expect(isKingInCheck(board)).toEqual(false);
+    });
+    it("When the pawn can take the king from the right, the king is in check", () => {
+      const board = [
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", "P", " ", " ", " "],
+        [" ", " ", " ", "K", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+      ];
+      expect(isKingInCheck(board)).toEqual(true);
+    });
+    it("When the king is at the first row, and the pawn is at the second row, the king is not in check", () => {
+      const board = [
+        [" ", " ", " ", "K", " ", " ", " ", " "],
+        [" ", " ", " ", " ", "P", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+      ];
+      expect(isKingInCheck(board)).toEqual(false);
+    });
   });
 });
