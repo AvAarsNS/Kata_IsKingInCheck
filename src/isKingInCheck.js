@@ -46,9 +46,24 @@ function getColumnOfKing(board) {
   return board[getRowOfKing(board)].findIndex((square) => square === "K");
 }
 
+function canKingBeTakenByRook(board, rowOfKing, columnOfKing){
+  const columnOfRook = columnOfKing;
+  return (
+    canKingBeTakenByRookInColumn(board, rowOfKing, columnOfKing)
+
+  )
+}
+
+function isKingInCheckwithRook(board, rowOfKing, columnOfKing) {
+  return (
+    canKingBeTakenByRook(board, rowOfKing, columnOfKing)
+  )
+}
+
 
 module.exports = {
   isKingInCheck,
   getRowOfKing,
   getColumnOfKing,
+  canKingBeTakenByRook
 };

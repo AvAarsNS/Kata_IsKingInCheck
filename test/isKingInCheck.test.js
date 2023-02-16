@@ -67,5 +67,23 @@ describe("This test suite checks the IsKingInCheck functionality", () => {
       ];
       expect(isKingInCheck(board)).toEqual(false);
     });
+
+
+
   });
 });
+describe("This test suite checks the IsKingInCheck functionality", () => {
+  it("In a board with only a king the king is in check i a board with a Rook and a King, the KIng is in check", () => {
+    const board = [
+      [" ", " ", " ", "R", " ", " ", " ", " "],
+      [" ", " ", " ", " ", " ", " ", " ", " "],
+      [" ", " ", " ", " ", " ", " ", " ", " "],
+      [" ", " ", " ", "K", " ", " ", " ", " "],
+      [" ", " ", " ", " ", " ", " ", " ", " "],
+      [" ", " ", " ", " ", " ", " ", " ", " "],
+      [" ", " ", " ", " ", " ", " ", " ", " "],
+      [" ", " ", " ", " ", " ", " ", " ", " "],
+    ];
+    expect(isKingInCheck(board)).toEqual(true);
+    });
+  });
