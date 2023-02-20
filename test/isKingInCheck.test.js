@@ -67,23 +67,33 @@ describe("This test suite checks the IsKingInCheck functionality", () => {
       ];
       expect(isKingInCheck(board)).toEqual(false);
     });
-
-
-
   });
-});
-describe("This test suite checks the IsKingInCheck functionality", () => {
-  it("In a board with only a king the king is in check i a board with a Rook and a King, the KIng is in check", () => {
-    const board = [
-      [" ", " ", " ", "R", " ", " ", " ", " "],
-      [" ", " ", " ", " ", " ", " ", " ", " "],
-      [" ", " ", " ", " ", " ", " ", " ", " "],
-      [" ", " ", " ", "K", " ", " ", " ", " "],
-      [" ", " ", " ", " ", " ", " ", " ", " "],
-      [" ", " ", " ", " ", " ", " ", " ", " "],
-      [" ", " ", " ", " ", " ", " ", " ", " "],
-      [" ", " ", " ", " ", " ", " ", " ", " "],
-    ];
-    expect(isKingInCheck(board)).toEqual(true);
+  describe("In a board where a rook is present", () => {
+    it("The king is in check when there is a rook in the same column", () => {
+      const board = [
+        [" ", " ", " ", "R", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", "K", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+      ];
+      expect(isKingInCheck(board)).toEqual(true);
+    });
+    it("The king is not in check when there are no rooks in the same column", () => {
+      const board = [
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", "R", " ", " ", " ", " ", " "],
+        [" ", " ", " ", "K", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+      ];
+      expect(isKingInCheck(board)).toEqual(false);
     });
   });
+});

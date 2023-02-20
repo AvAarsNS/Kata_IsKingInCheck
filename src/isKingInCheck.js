@@ -1,7 +1,10 @@
 function isKingInCheck(board) {
   const rowOfKing = getRowOfKing(board);
   const columnOfKing = getColumnOfKing(board);
-  return isKingInCheckByPawn(board, rowOfKing, columnOfKing);
+  return (
+    isKingInCheckByPawn(board, rowOfKing, columnOfKing) ||
+    canKingBeTakenByRook(board, rowOfKing, columnOfKing)
+  );
 }
 
 function isKingInCheckByPawn(board, rowOfKing, columnOfKing) {
@@ -46,24 +49,17 @@ function getColumnOfKing(board) {
   return board[getRowOfKing(board)].findIndex((square) => square === "K");
 }
 
-function canKingBeTakenByRook(board, rowOfKing, columnOfKing){
-  const columnOfRook = columnOfKing;
-  return (
-    canKingBeTakenByRookInColumn(board, rowOfKing, columnOfKing)
-
-  )
+function isRookInColumnAboveKing(board, rowOfKing, columnOfKing) {
+  return board.slice(0, rowOfKing).some((row) => row[columnOfKing] === "R");
 }
 
-function isKingInCheckwithRook(board, rowOfKing, columnOfKing) {
-  return (
-    canKingBeTakenByRook(board, rowOfKing, columnOfKing)
-  )
+function canKingBeTakenByRook(board, rowOfKing, columnOfKing) {
+  return isRookInColumnAboveKing(board, rowOfKing, columnOfKing);
 }
-
 
 module.exports = {
   isKingInCheck,
   getRowOfKing,
   getColumnOfKing,
-  canKingBeTakenByRook
+  canKingBeTakenByRook,
 };
