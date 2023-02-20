@@ -10,7 +10,7 @@ function isKingInCheck(board) {
 function isKingInCheckByPawn(board, rowOfKing, columnOfKing) {
   return (
     isKingNotOnFirstRow(board, rowOfKing) &&
-    canKingBeTakenByPawn(board, rowOfKing, columnOfKing)
+    canKingBeTakenByPawn(board, rowOfKing, columnOfKing) 
   );
 }
 
