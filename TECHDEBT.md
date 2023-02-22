@@ -1,6 +1,7 @@
 # Tech debt
 - Readability of test cases can be improved. Lot of space taken by chess boards
 - Notation of location of chess pieces can be according to common standards (A1, C3 etc)
+- Add a desc to distinguish between cases that lead to check and cases that don't
 
 K: A1, P: C2
 
