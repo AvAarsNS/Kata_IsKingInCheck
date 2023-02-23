@@ -1,17 +1,9 @@
-function isKingInCheck(board) {
-  const rowOfKing = getRowOfKing(board);
-  const columnOfKing = getColumnOfKing(board);
-  return (
-    isKingInCheckByPawn(board, rowOfKing, columnOfKing) ||
-    canKingBeTakenByRook(board, rowOfKing, columnOfKing)
-  );
+function getRowOfKing(board) {
+  return board.findIndex((row) => row.includes("K"));
 }
 
-function isKingInCheckByPawn(board, rowOfKing, columnOfKing) {
-  return (
-    isKingNotOnFirstRow(board, rowOfKing) &&
-    canKingBeTakenByPawn(board, rowOfKing, columnOfKing) 
-  );
+function getColumnOfKing(board) {
+  return board[getRowOfKing(board)].findIndex((square) => square === "K");
 }
 
 function isKingOnFirstRow(board, rowOfKing) {
@@ -41,20 +33,35 @@ function canKingBeTakenByPawn(board, rowOfKing, columnOfKing) {
   );
 }
 
-function getRowOfKing(board) {
-  return board.findIndex((row) => row.includes("K"));
-}
-
-function getColumnOfKing(board) {
-  return board[getRowOfKing(board)].findIndex((square) => square === "K");
+function isKingInCheckByPawn(board, rowOfKing, columnOfKing) {
+  return (
+    isKingNotOnFirstRow(board, rowOfKing) &&
+    canKingBeTakenByPawn(board, rowOfKing, columnOfKing)
+  );
 }
 
 function isRookInColumnAboveKing(board, rowOfKing, columnOfKing) {
   return board.slice(0, rowOfKing).some((row) => row[columnOfKing] === "R");
 }
 
+function isRookInColumnBelowKing(board, rowOfKing, columnOfKing) {
+  return board.slice(rowOfKing).some((row) => row[columnOfKing] === "R");
+}
+
 function canKingBeTakenByRook(board, rowOfKing, columnOfKing) {
-  return isRookInColumnAboveKing(board, rowOfKing, columnOfKing);
+  return (
+    isRookInColumnAboveKing(board, rowOfKing, columnOfKing) ||
+    isRookInColumnBelowKing(board, rowOfKing, columnOfKing)
+  );
+}
+
+function isKingInCheck(board) {
+  const rowOfKing = getRowOfKing(board);
+  const columnOfKing = getColumnOfKing(board);
+  return (
+    isKingInCheckByPawn(board, rowOfKing, columnOfKing) ||
+    canKingBeTakenByRook(board, rowOfKing, columnOfKing)
+  );
 }
 
 module.exports = {

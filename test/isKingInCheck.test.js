@@ -54,6 +54,19 @@ describe("This is a testsuite for a piece of functionality that is called IsKing
       ];
       expect(isKingInCheck(board)).toEqual(false);
     });
+    it("When the king is in another column than the rook", () => {
+      const board = [
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", "R", " ", " ", " ", " ", " "],
+        [" ", " ", " ", "K", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+      ];
+      expect(isKingInCheck(board)).toEqual(false);
+    });
   });
   describe("In the following cases the king is in check", () => {
     it("When the pawn can take the king from the left", () => {
@@ -83,9 +96,7 @@ describe("This is a testsuite for a piece of functionality that is called IsKing
       ];
       expect(isKingInCheck(board)).toEqual(true);
     });
-  });
-  describe("In a board where a rook is present", () => {
-    it("The king is in check when there is a rook in the same column", () => {
+    it("When the rook can take the king from above", () => {
       const board = [
         [" ", " ", " ", "R", " ", " ", " ", " "],
         [" ", " ", " ", " ", " ", " ", " ", " "],
@@ -98,18 +109,18 @@ describe("This is a testsuite for a piece of functionality that is called IsKing
       ];
       expect(isKingInCheck(board)).toEqual(true);
     });
-    it("The king is not in check when there are no rooks in the same column", () => {
+    it("When the rook can take the king from below", () => {
       const board = [
         [" ", " ", " ", " ", " ", " ", " ", " "],
         [" ", " ", " ", " ", " ", " ", " ", " "],
-        [" ", " ", "R", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
         [" ", " ", " ", "K", " ", " ", " ", " "],
         [" ", " ", " ", " ", " ", " ", " ", " "],
         [" ", " ", " ", " ", " ", " ", " ", " "],
-        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", "R", " ", " ", " ", " "],
         [" ", " ", " ", " ", " ", " ", " ", " "],
       ];
-      expect(isKingInCheck(board)).toEqual(false);
+      expect(isKingInCheck(board)).toEqual(true);
     });
   });
 });
