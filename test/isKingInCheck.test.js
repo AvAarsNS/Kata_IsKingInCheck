@@ -70,7 +70,7 @@ describe("This is a testsuite for a piece of functionality that is called IsKing
         ];
         expect(isKingInCheck(board)).toEqual(false);
       });
-      it("directly above the king, but there is a pawn inbetween", () => {
+      it("in the same column as the king, but there is a pawn inbetween", () => {
         const board = [
           [" ", " ", " ", "R", " ", " ", " ", " "],
           [" ", " ", " ", "P", " ", " ", " ", " "],
@@ -82,6 +82,19 @@ describe("This is a testsuite for a piece of functionality that is called IsKing
           [" ", " ", " ", " ", " ", " ", " ", " "],
         ];
         expect(isKingInCheck(board)).toEqual(false);
+      });
+      it("in the same column as the king, but there is a pawn inbetween, while there is a rook inbetween", () => {
+        const board = [
+          [" ", " ", " ", "R", " ", " ", " ", " "],
+          [" ", " ", " ", "P", " ", " ", " ", " "],
+          [" ", " ", " ", "R", " ", " ", " ", " "],
+          [" ", " ", " ", "K", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+        ];
+        expect(isKingInCheck(board)).toEqual(true);
       });
     });
   });

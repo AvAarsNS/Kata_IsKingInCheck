@@ -1,8 +1,27 @@
-function isRookInColumnAboveKing(board, rowOfKing, columnOfKing) {
-  const rowsAboveKing = board.slice(0, rowOfKing);
-  const rowOfRook = rowsAboveKing.findIndex((row) => row[columnOfKing] === "R");
+function extractRowsAboveKingFromBoard(board, rowOfKing) {
+  return board.slice(0, rowOfKing);
+}
+
+function getRowOfRookFromRowsAboveKing(rowsAboveKing, columnOfKing) {
+  return rowsAboveKing.findIndex((row) => row[columnOfKing] === "R");
+}
+
+function isRookInColumnAboveKing(rowsAboveKing, rowOfKing, columnOfKing, rowOfRook) {
   if (rowOfRook === -1) return false;
   return true;
+}
+
+function isThereNothingBetweenTheRookAndTheKing(rowsAboveKing, rowOfKing, columnOfKing, rowOfRook) {
+  return rowsAboveKing.slice(rowOfRook + 1, rowOfKing).every((row) => row[columnOfKing] === " ");
+}
+
+function canKingBeTakenByRookFromAbove(board, rowOfKing, columnOfKing) {
+  const rowsAboveKing = extractRowsAboveKingFromBoard(board, rowOfKing);
+  const rowOfRook = getRowOfRookFromRowsAboveKing(rowsAboveKing, columnOfKing);
+  return (
+    isRookInColumnAboveKing(rowsAboveKing, rowOfKing, columnOfKing, rowOfRook) &&
+    isThereNothingBetweenTheRookAndTheKing(rowsAboveKing, rowOfKing, columnOfKing, rowOfRook)
+  );
 }
 
 function isRookInColumnBelowKing(board, rowOfKing, columnOfKing) {
@@ -19,7 +38,7 @@ function isRookInRowRightOfKing(board, rowOfKing, columnOfKing) {
 
 function canKingBeTakenByRook(board, rowOfKing, columnOfKing) {
   return (
-    isRookInColumnAboveKing(board, rowOfKing, columnOfKing) ||
+    canKingBeTakenByRookFromAbove(board, rowOfKing, columnOfKing) ||
     isRookInColumnBelowKing(board, rowOfKing, columnOfKing) ||
     isRookInRowLeftOfKing(board, rowOfKing, columnOfKing) ||
     isRookInRowRightOfKing(board, rowOfKing, columnOfKing)
