@@ -9,3 +9,9 @@ K: A1, P: C2
  - Werken met 1 chess board voor alle test cases
  - Chess board maken via een functie
  - Werken met coordinaten om board te beschrijven
+
+
+ # The big bang refactor
+
+    - Bij CanKingBeTakenByPawn kijken we vanuit de King. Bij de Rook doen we dat niet. Laten we dat ook daar doen! :)
+    

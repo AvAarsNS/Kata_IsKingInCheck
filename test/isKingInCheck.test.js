@@ -70,7 +70,7 @@ describe("This is a testsuite for a piece of functionality that is called IsKing
         ];
         expect(isKingInCheck(board)).toEqual(false);
       });
-      it("in the same column as the king, but there is a pawn inbetween", () => {
+      it("in the same column as the king and above him, and there is a pawn inbetween", () => {
         const board = [
           [" ", " ", " ", "R", " ", " ", " ", " "],
           [" ", " ", " ", "P", " ", " ", " ", " "],
@@ -83,18 +83,18 @@ describe("This is a testsuite for a piece of functionality that is called IsKing
         ];
         expect(isKingInCheck(board)).toEqual(false);
       });
-      it("in the same column as the king, but there is a pawn inbetween, while there is a rook inbetween", () => {
+      it("in the same column as the king but below him, and there is a pawn inbetween", () => {
         const board = [
-          [" ", " ", " ", "R", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", "K", " ", " ", " ", " "],
           [" ", " ", " ", "P", " ", " ", " ", " "],
           [" ", " ", " ", "R", " ", " ", " ", " "],
-          [" ", " ", " ", "K", " ", " ", " ", " "],
-          [" ", " ", " ", " ", " ", " ", " ", " "],
-          [" ", " ", " ", " ", " ", " ", " ", " "],
           [" ", " ", " ", " ", " ", " ", " ", " "],
           [" ", " ", " ", " ", " ", " ", " ", " "],
         ];
-        expect(isKingInCheck(board)).toEqual(true);
+        expect(isKingInCheck(board)).toEqual(false);
       });
     });
   });
@@ -174,6 +174,21 @@ describe("This is a testsuite for a piece of functionality that is called IsKing
           [" ", " ", " ", " ", " ", " ", " ", " "],
           [" ", " ", " ", " ", " ", " ", " ", " "],
           [" ", " ", " ", "K", " ", " ", "R", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+        ];
+        expect(isKingInCheck(board)).toEqual(true);
+      });
+    });
+    describe("When there are two rooks and a pawn", () => {
+      it("in the same column as the king and above his royal highness, and the pawn is inbetween the two rooks", () => {
+        const board = [
+          [" ", " ", " ", "R", " ", " ", " ", " "],
+          [" ", " ", " ", "P", " ", " ", " ", " "],
+          [" ", " ", " ", "R", " ", " ", " ", " "],
+          [" ", " ", " ", "K", " ", " ", " ", " "],
           [" ", " ", " ", " ", " ", " ", " ", " "],
           [" ", " ", " ", " ", " ", " ", " ", " "],
           [" ", " ", " ", " ", " ", " ", " ", " "],

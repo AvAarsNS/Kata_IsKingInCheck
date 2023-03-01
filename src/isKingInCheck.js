@@ -1,4 +1,4 @@
-const canKingBeTakenByRook = require("./canKingBeTakenByRook");
+const { canKingBeTakenByRook } = require("./canKingBeTakenByRook");
 const canKingBeTakenByPawn = require("./canKingBeTakenByPawn");
 
 function getRowOfKing(board) {

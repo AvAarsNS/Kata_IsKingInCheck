@@ -1,9 +1,9 @@
-function isKingOnFirstRow(board, rowOfKing) {
+function isKingOnFirstRow(rowOfKing) {
   return rowOfKing === 0;
 }
 
-function isKingNotOnFirstRow(board, rowOfKing) {
-  return !isKingOnFirstRow(board, rowOfKing);
+function isKingNotOnFirstRow(rowOfKing) {
+  return !isKingOnFirstRow(rowOfKing);
 }
 
 function canKingBeTakenByPawnToLeft(board, rowOfKing, columnOfKing) {
@@ -20,7 +20,7 @@ function canKingBeTakenByPawnToRight(board, rowOfKing, columnOfKing) {
 
 function canKingBeTakenByPawn(board, rowOfKing, columnOfKing) {
   return (
-    isKingNotOnFirstRow(board, rowOfKing) &&
+    isKingNotOnFirstRow(rowOfKing) &&
     (canKingBeTakenByPawnToLeft(board, rowOfKing, columnOfKing) ||
       canKingBeTakenByPawnToRight(board, rowOfKing, columnOfKing))
   );
