@@ -3,10 +3,14 @@ function isRookDirectlyAboveKing(board, rowOfKing, columnOfKing) {
   return board[rowOfRook][columnOfKing] === "R";
 }
 
-function isRookDirectlyToTheRightOfKing(board, rowOfKing, columnOfKing) {
-  const columnOfRook = columnOfKing + 1;
-  return board[rowOfKing][columnOfRook] === "R";
+function canKingSeeARookOnTheRight(board, rowOfKing, columnOfKing) {
+  const boardWidth = board[0].length;
+  for (let column = columnOfKing + 1; column <= boardWidth; column++) {
+    if (board[rowOfKing][column] === "R") return true;
+  }
+  return false;
 }
+
 
 function isRookDirectlyBelowKing(board, rowOfKing, columnOfKing) {
   const rowOfRook = rowOfKing + 1;
@@ -23,7 +27,7 @@ function canTheKingSeeARookOnTheLeft(board, rowOfKing, columnOfKing) {
 function canKingBeTakenByRook(board, rowOfKing, columnOfKing) {
   return (
     isRookDirectlyAboveKing(board, rowOfKing, columnOfKing) ||
-    isRookDirectlyToTheRightOfKing(board, rowOfKing, columnOfKing) ||
+    canKingSeeARookOnTheRight(board, rowOfKing, columnOfKing) ||
     isRookDirectlyBelowKing(board, rowOfKing, columnOfKing) ||
     canTheKingSeeARookOnTheLeft(board, rowOfKing, columnOfKing)
   );

@@ -163,7 +163,7 @@
 |   |   |   |   |   |   |   |   |
 |---|---|---|---|---|---|---|---|
 
-✔️Scenario 2: Rook above King, with Pawn inbetween
+- Scenario 2: Rook above King, with Pawn inbetween
 |---|---|---|---|---|---|---|---|
 |   |   |   | R |   |   |   |   |
 |---|---|---|---|---|---|---|---|
@@ -182,7 +182,7 @@
 |   |   |   |   |   |   |   |   |
 |---|---|---|---|---|---|---|---|
 
-🎈 Scenario: Rook below King with a pawn in between
+-  Scenario: Rook below King with a pawn in between
 |---|---|---|---|---|---|---|---|
 |   |   |   |   |   |   |   |   |
 |---|---|---|---|---|---|---|---|
@@ -201,7 +201,7 @@
 |   |   |   |   |   |   |   |   |
 |---|---|---|---|---|---|---|---|
 
- Scenario: Rook to the left of the King with a pawn in between
+- Scenario: Rook to the left of the King with a pawn in between
 |---|---|---|---|---|---|---|---|
 |   |   |   |   |   |   |   |   |
 |---|---|---|---|---|---|---|---|
@@ -220,7 +220,7 @@
 |   |   |   |   |   |   |   |   |
 |---|---|---|---|---|---|---|---|
 
-Scenario: Rook to the right of the King with a pawn in between
+- Scenario: Rook to the right of the King with a pawn in between
 |---|---|---|---|---|---|---|---|
 |   |   |   |   |   |   |   |   |
 |---|---|---|---|---|---|---|---|
@@ -297,7 +297,7 @@ Scenario: Rook to the right of the King with a pawn in between
 |   |   |   |   |   |   |   |   |
 |---|---|---|---|---|---|---|---|
 
-✔ Scenario 4: Rook on the right of King
+🙌 Scenario 4: Rook on the right of King
 |---|---|---|---|---|---|---|---|
 |   |   |   |   |   |   |   |   |
 |---|---|---|---|---|---|---|---|
@@ -316,7 +316,7 @@ Scenario: Rook to the right of the King with a pawn in between
 |   |   |   |   |   |   |   |   |
 |---|---|---|---|---|---|---|---|
 
-✔️Scenario 5: Rook above King, Pawn above that Rook, Rook above that pawn, king can be fucked
+- Scenario 5: Rook above King, Pawn above that Rook, Rook above that pawn, king can be fucked
 |---|---|---|---|---|---|---|---|
 |   |   |   | R |   |   |   |   |
 |---|---|---|---|---|---|---|---|
