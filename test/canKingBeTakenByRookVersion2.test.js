@@ -87,6 +87,23 @@ describe("We want to be able to detect if the king can be taken by a rook", () =
         true
         );
     });
+        it("a rook is two spots to the right of the king", () => {
+        const board = [
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", "K", " ", "R", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " "],
+        ];
+        const rowOfKing = 3;
+        const columnOfKing = 3;
+        expect(canKingBeTakenByRook(board, rowOfKing, columnOfKing)).toEqual(
+        true
+        );
+    });
   });
   describe("The king can not be taken when", () => {
     it("a rook is in a different column and row", () => {
