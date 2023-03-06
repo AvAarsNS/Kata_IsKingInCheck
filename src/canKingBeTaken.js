@@ -42,6 +42,15 @@ function canKingBeTakenFromTheWest(board, rowOfKing, columnOfKing) {
   return canKingBeTakenByPieceFromCardinalDirection(pieceToTheRight);
 }
 
+function canKingBeTakenFromTheNorth(board, rowOfKing, columnOfKing) {
+    const pieceToTheNorth = whatDoesTheKingSeeInTheNorth(
+      board,
+      rowOfKing,
+      columnOfKing
+    );
+    return canKingBeTakenByPieceFromCardinalDirection(pieceToTheNorth);
+}
+
 module.exports = {
   whatDoesTheKingSeeInTheEast,
   whatDoesTheKingSeeInTheWest,
@@ -49,4 +58,5 @@ module.exports = {
   canKingBeTakenByPieceFromCardinalDirection,
   canKingBeTakenFromTheEast,
   canKingBeTakenFromTheWest,
+  canKingBeTakenFromTheNorth
 };

@@ -1,4 +1,4 @@
-# Tech debt
+# Brainfarts
 - Readability of test cases can be improved. Lot of space taken by chess boards
 - Notation of location of chess pieces can be according to common standards (A1, C3 etc)
 - Add a desc to distinguish between cases that lead to check and cases that don't
@@ -10,8 +10,9 @@ K: A1, P: C2
  - Chess board maken via een functie
  - Werken met coordinaten om board te beschrijven
 
+ # tech debt
+ - constantes in test file op hoger niveau zetten
 
- # The big bang refactor
 
-    - Bij CanKingBeTakenByPawn kijken we vanuit de King. Bij de Rook doen we dat niet. Laten we dat ook daar doen! :)
+
     

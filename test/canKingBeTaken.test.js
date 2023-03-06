@@ -5,6 +5,7 @@ const {
   canKingBeTakenByPieceFromCardinalDirection,
   canKingBeTakenFromTheEast,
   canKingBeTakenFromTheWest,
+  canKingBeTakenFromTheNorth,
 } = require("../src/canKingBeTaken");
 
 describe("This test suite looks whether for a given chessboard, the king is in check", () => {
@@ -350,6 +351,44 @@ describe("This test suite looks whether for a given chessboard, the king is in c
         expect(
           whatDoesTheKingSeeInTheNorth(board, rowOfKing, columnOfKing)
         ).toEqual("R");
+      });
+    });
+    describe("We then check if the king is in check from the north when", () => {
+      describe("The king is not in check from the north when", () => {
+        it("there is nothing north of the King", () => {
+          const board = [
+            [" ", " ", " ", " ", " ", " ", " ", " "],
+            [" ", " ", " ", " ", " ", " ", " ", " "],
+            [" ", " ", " ", " ", " ", " ", " ", " "],
+            [" ", " ", " ", "K", " ", " ", " ", " "],
+            [" ", " ", " ", " ", " ", " ", " ", " "],
+            [" ", " ", " ", " ", " ", " ", " ", " "],
+            [" ", " ", " ", " ", " ", " ", " ", " "],
+            [" ", " ", " ", " ", " ", " ", " ", " "],
+          ];
+          const rowOfKing = 3;
+          const columnOfKing = 3;
+          expect(
+            canKingBeTakenFromTheNorth(board, rowOfKing, columnOfKing)
+          ).toEqual(false);
+        });
+      });
+      describe('The king is in check from the north when', () => {
+        it('there is a rook north of the King', () => {
+          const board = [
+            [" ", " ", " ", " ", " ", " ", " ", " "],
+            [" ", " ", " ", "R", " ", " ", " ", " "],
+            [" ", " ", " ", " ", " ", " ", " ", " "],
+            [" ", " ", " ", "K", " ", " ", " ", " "],
+            [" ", " ", " ", " ", " ", " ", " ", " "],
+            [" ", " ", " ", " ", " ", " ", " ", " "],
+            [" ", " ", " ", " ", " ", " ", " ", " "],
+            [" ", " ", " ", " ", " ", " ", " ", " "],
+          ];
+          const rowOfKing = 3;
+          const columnOfKing = 3;
+          expect(canKingBeTakenFromTheNorth(board, rowOfKing, columnOfKing)).toEqual(true);
+        });
       });
     });
   });
