@@ -20,6 +20,14 @@ function whatDoesTheKingSeeInTheNorth(board, rowOfKing, columnOfKing) {
   return " ";
 }
 
+function whatDoesTheKingSeeInTheSouth(board, rowOfKing, columnOfKing) {
+  const boardHeight = board.length;
+  for (let row = rowOfKing + 1; row < boardHeight; row += 1) {
+    if (board[row][columnOfKing] !== " ") return board[row][columnOfKing];
+  }
+  return " ";
+}
+
 function canKingBeTakenByPieceFromCardinalDirection(piece) {
   return piece === "R" || piece === "Q";
 }
@@ -55,6 +63,7 @@ module.exports = {
   whatDoesTheKingSeeInTheEast,
   whatDoesTheKingSeeInTheWest,
   whatDoesTheKingSeeInTheNorth,
+  whatDoesTheKingSeeInTheSouth,
   canKingBeTakenByPieceFromCardinalDirection,
   canKingBeTakenFromTheEast,
   canKingBeTakenFromTheWest,
