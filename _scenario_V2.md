@@ -1,11 +1,5 @@
 # BDD scenarious
 
-## 1 - King VS Pawn
-- we have a board
-- and the board is empty
-- P1 placed the king at X/Y
-- P2 placed the pawn at X/Y
-
 ### King check east - ✔
 
 ✔️Scenario 0:
@@ -295,3 +289,9 @@
 ✔️Pawn? No
 ✔️Rook? Yes
 ✔️Queen? Yes
+
+### What does the king at d4 see north west?
+
+✔️Nothing to the north west --> nothing
+✔️A bishop at c3 --> bishop
+A bishop at a1 --> bishop
