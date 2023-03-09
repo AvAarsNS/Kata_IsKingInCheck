@@ -7,6 +7,7 @@ const {
   canKingBeTakenFromTheEast,
   canKingBeTakenFromTheWest,
   canKingBeTakenFromTheNorth,
+  whatDoesTheKingSeeInTheNorthWest,
 } = require("../src/canKingBeTaken");
 
 describe("This test suite looks whether for a given chessboard, the king is in check", () => {
@@ -463,97 +464,44 @@ describe("This test suite looks whether for a given chessboard, the king is in c
           whatDoesTheKingSeeInTheSouth(board, rowOfKing, columnOfKing)
         ).toEqual("R");
       });
-    //   it("a rook, and behind the rook there is a creepy person, the king sees the rook", () => {
-    //     const board = [
-    //       [" ", " ", " ", " ", " ", " ", " ", " "],
-    //       [" ", " ", " ", "Mathijs", " ", " ", " ", " "],
-    //       [" ", " ", " ", "R", " ", " ", " ", " "],
-    //       [" ", " ", " ", "K", " ", " ", " ", " "],
-    //       [" ", " ", " ", " ", " ", " ", " ", " "],
-    //       [" ", " ", " ", " ", " ", " ", " ", " "],
-    //       [" ", " ", " ", " ", " ", " ", " ", " "],
-    //       [" ", " ", " ", " ", " ", " ", " ", " "],
-    //     ];
-    //     const rowOfKing = 3;
-    //     const columnOfKing = 3;
-    //     expect(
-    //       whatDoesTheKingSeeInTheNorth(board, rowOfKing, columnOfKing)
-    //     ).toEqual("R");
-    //   });
-    // });
-    // describe("We then check if the king is in check from the north when", () => {
-    //   describe("The king is not in check from the north when", () => {
-    //     it("there is nothing north of the King", () => {
-    //       const board = [
-    //         [" ", " ", " ", " ", " ", " ", " ", " "],
-    //         [" ", " ", " ", " ", " ", " ", " ", " "],
-    //         [" ", " ", " ", " ", " ", " ", " ", " "],
-    //         [" ", " ", " ", "K", " ", " ", " ", " "],
-    //         [" ", " ", " ", " ", " ", " ", " ", " "],
-    //         [" ", " ", " ", " ", " ", " ", " ", " "],
-    //         [" ", " ", " ", " ", " ", " ", " ", " "],
-    //         [" ", " ", " ", " ", " ", " ", " ", " "],
-    //       ];
-    //       const rowOfKing = 3;
-    //       const columnOfKing = 3;
-    //       expect(
-    //         canKingBeTakenFromTheNorth(board, rowOfKing, columnOfKing)
-    //       ).toEqual(false);
-    //     });
-    //     it("there is a pawn north of the King", () => {
-    //       const board = [
-    //         [" ", " ", " ", " ", " ", " ", " ", " "],
-    //         [" ", " ", " ", " ", " ", " ", " ", " "],
-    //         [" ", " ", " ", "P", " ", " ", " ", " "],
-    //         [" ", " ", " ", "K", " ", " ", " ", " "],
-    //         [" ", " ", " ", " ", " ", " ", " ", " "],
-    //         [" ", " ", " ", " ", " ", " ", " ", " "],
-    //         [" ", " ", " ", " ", " ", " ", " ", " "],
-    //         [" ", " ", " ", " ", " ", " ", " ", " "],
-    //       ];
-    //       const rowOfKing = 3;
-    //       const columnOfKing = 3;
-    //       expect(
-    //         canKingBeTakenFromTheNorth(board, rowOfKing, columnOfKing)
-    //       ).toEqual(false);
-    //     });
-    //   });
-    //   describe("The king is in check from the north when", () => {
-    //     it("there is a rook north of the King", () => {
-    //       const board = [
-    //         [" ", " ", " ", " ", " ", " ", " ", " "],
-    //         [" ", " ", " ", "R", " ", " ", " ", " "],
-    //         [" ", " ", " ", " ", " ", " ", " ", " "],
-    //         [" ", " ", " ", "K", " ", " ", " ", " "],
-    //         [" ", " ", " ", " ", " ", " ", " ", " "],
-    //         [" ", " ", " ", " ", " ", " ", " ", " "],
-    //         [" ", " ", " ", " ", " ", " ", " ", " "],
-    //         [" ", " ", " ", " ", " ", " ", " ", " "],
-    //       ];
-    //       const rowOfKing = 3;
-    //       const columnOfKing = 3;
-    //       expect(
-    //         canKingBeTakenFromTheNorth(board, rowOfKing, columnOfKing)
-    //       ).toEqual(true);
-    //     });
-    //     it("there is a queen north of the King", () => {
-    //       const board = [
-    //         [" ", " ", " ", " ", " ", " ", " ", " "],
-    //         [" ", " ", " ", "Q", " ", " ", " ", " "],
-    //         [" ", " ", " ", " ", " ", " ", " ", " "],
-    //         [" ", " ", " ", "K", " ", " ", " ", " "],
-    //         [" ", " ", " ", " ", " ", " ", " ", " "],
-    //         [" ", " ", " ", " ", " ", " ", " ", " "],
-    //         [" ", " ", " ", " ", " ", " ", " ", " "],
-    //         [" ", " ", " ", " ", " ", " ", " ", " "],
-    //       ];
-    //       const rowOfKing = 3;
-    //       const columnOfKing = 3;
-    //       expect(
-    //         canKingBeTakenFromTheNorth(board, rowOfKing, columnOfKing)
-    //       ).toEqual(true);
-    //     });
-    //   });
+    });
+  });
+  describe("We want to determine if the king is in check from the north west", () => {
+    describe('We first check what chess piece the king sees looking to the north west. If on the north west there is', () => {
+      it('nothing, the king sees an empty void ', () => {
+        const board = [
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", "K", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+        ];
+        const rowOfKing = 3;
+        const columnOfKing = 3;
+        expect(
+          whatDoesTheKingSeeInTheNorthWest(board, rowOfKing, columnOfKing)
+        ).toEqual(" ");
+      });
+      it('a bishop directly north west, the king sees a bishop ', () => {
+        const board = [
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", "B", " ", " ", " ", " ", " "],
+          [" ", " ", " ", "K", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+        ];
+        const rowOfKing = 3;
+        const columnOfKing = 3;
+        expect(
+          whatDoesTheKingSeeInTheNorthWest(board, rowOfKing, columnOfKing)
+        ).toEqual("B");
+      });
     });
   });
 });

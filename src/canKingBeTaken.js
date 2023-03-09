@@ -28,6 +28,10 @@ function whatDoesTheKingSeeInTheSouth(board, rowOfKing, columnOfKing) {
   return " ";
 }
 
+function whatDoesTheKingSeeInTheNorthWest (board, rowOfKing, columnOfKing) {
+  return board[rowOfKing -1][columnOfKing -1];
+}
+
 function canKingBeTakenByPieceFromCardinalDirection(piece) {
   return piece === "R" || piece === "Q";
 }
@@ -64,6 +68,7 @@ module.exports = {
   whatDoesTheKingSeeInTheWest,
   whatDoesTheKingSeeInTheNorth,
   whatDoesTheKingSeeInTheSouth,
+  whatDoesTheKingSeeInTheNorthWest,
   canKingBeTakenByPieceFromCardinalDirection,
   canKingBeTakenFromTheEast,
   canKingBeTakenFromTheWest,
