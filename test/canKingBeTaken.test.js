@@ -3,11 +3,12 @@ const {
   whatDoesTheKingSeeInTheWest,
   whatDoesTheKingSeeInTheNorth,
   whatDoesTheKingSeeInTheSouth,
+  whatDoesTheKingSeeInTheNorthWest,
   canKingBeTakenByPieceFromCardinalDirection,
   canKingBeTakenFromTheEast,
   canKingBeTakenFromTheWest,
   canKingBeTakenFromTheNorth,
-  whatDoesTheKingSeeInTheNorthWest,
+  canKingBeTakenFromTheNorthWest,
 } = require("../src/canKingBeTaken");
 
 describe("This test suite looks whether for a given chessboard, the king is in check", () => {
@@ -466,7 +467,7 @@ describe("This test suite looks whether for a given chessboard, the king is in c
       });
     });
   });
-  describe("We want to determine if the king is in check from the north west", () => {
+  describe("We want to determine if the king is in check from the north west. The king is at D4", () => {
     describe('We first check what chess piece the king sees looking to the north west. If on the north west there is', () => {
       it('nothing, the king sees an empty void ', () => {
         const board = [
@@ -485,7 +486,7 @@ describe("This test suite looks whether for a given chessboard, the king is in c
           whatDoesTheKingSeeInTheNorthWest(board, rowOfKing, columnOfKing)
         ).toEqual(" ");
       });
-      it('a bishop directly north west, the king sees a bishop ', () => {
+      it('a bishop at C3, the king sees a bishop ', () => {
         const board = [
           [" ", " ", " ", " ", " ", " ", " ", " "],
           [" ", " ", " ", " ", " ", " ", " ", " "],
@@ -502,6 +503,127 @@ describe("This test suite looks whether for a given chessboard, the king is in c
           whatDoesTheKingSeeInTheNorthWest(board, rowOfKing, columnOfKing)
         ).toEqual("B");
       });
+      it("a bishop at A1, the king sees a bishop ", () => {
+        const board = [
+          ["B", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", "K", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+        ];
+        const rowOfKing = 3;
+        const columnOfKing = 3;
+        expect(
+          whatDoesTheKingSeeInTheNorthWest(board, rowOfKing, columnOfKing)
+        ).toEqual("B");
+      });
+      it("a bishop at B2, pawn at A1 the king sees a bishop ", () => {
+        const board = [
+          ["P", " ", " ", " ", " ", " ", " ", " "],
+          [" ", "B", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", "K", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+        ];
+        const rowOfKing = 3;
+        const columnOfKing = 3;
+        expect(
+          whatDoesTheKingSeeInTheNorthWest(board, rowOfKing, columnOfKing)
+        ).toEqual("B");
+      });
     });
+  describe('We then determine if the king can be taken', () => {
+      it("a bishop, yes", () => {
+        const board = [
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", "B", " ", " ", " ", " ", " "],
+          [" ", " ", " ", "K", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+        ];
+        const rowOfKing = 3;
+        const columnOfKing = 3;
+        expect(
+          canKingBeTakenFromTheNorthWest(board, rowOfKing, columnOfKing)
+        ).toEqual(true);
+      });
+      it("a 👩‍🦳👑, yes", () => {
+        const board = [
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", "Q", " ", " ", " ", " ", " "],
+          [" ", " ", " ", "K", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+        ];
+        const rowOfKing = 3;
+        const columnOfKing = 3;
+        expect(
+          canKingBeTakenFromTheNorthWest(board, rowOfKing, columnOfKing)
+        ).toEqual(true);
+      });
+      it("a rook, no", () => {
+        const board = [
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", "R", " ", " ", " ", " ", " "],
+          [" ", " ", " ", "K", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+        ];
+        const rowOfKing = 3;
+        const columnOfKing = 3;
+        expect(
+          canKingBeTakenFromTheNorthWest(board, rowOfKing, columnOfKing)
+        ).toEqual(false);
+      });
+      it("a pawn at C3, yes", () => {
+        const board = [
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", "P", " ", " ", " ", " ", " "],
+          [" ", " ", " ", "K", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+        ];
+        const rowOfKing = 3;
+        const columnOfKing = 3;
+        expect(
+          canKingBeTakenFromTheNorthWest(board, rowOfKing, columnOfKing)
+        ).toEqual(true);
+      });
+      it("a pawn at B2, no, the pawn is too far away :(", () => {
+        const board = [
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", "P", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", "K", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+        ];
+        const rowOfKing = 3;
+        const columnOfKing = 3;
+        expect(
+          canKingBeTakenFromTheNorthWest(board, rowOfKing, columnOfKing)
+        ).toEqual(false);
+      });
+  });
   });
 });

@@ -29,7 +29,10 @@ function whatDoesTheKingSeeInTheSouth(board, rowOfKing, columnOfKing) {
 }
 
 function whatDoesTheKingSeeInTheNorthWest (board, rowOfKing, columnOfKing) {
-  return board[rowOfKing -1][columnOfKing -1];
+  for (let row = rowOfKing - 1, column = columnOfKing - 1; row >= 0 && column >= 0; row -= 1, column -= 1) {
+    if (board[row][column] !== " ") return board[row][column];
+  }
+  return " ";
 }
 
 function canKingBeTakenByPieceFromCardinalDirection(piece) {
@@ -63,6 +66,23 @@ function canKingBeTakenFromTheNorth(board, rowOfKing, columnOfKing) {
     return canKingBeTakenByPieceFromCardinalDirection(pieceToTheNorth);
 }
 
+function canKingBeTakenFromTheNorthWest(board, rowOfKing, columnOfKing) {
+  const pieceToTheNorthWest = whatDoesTheKingSeeInTheNorthWest( board, rowOfKing, columnOfKing);
+  const rowOfPieceToTheNorthWest = getRowOfChessPiece(board, pieceToTheNorthWest);
+  if (pieceToTheNorthWest === "B" || pieceToTheNorthWest === "Q") return true;
+  else if (pieceToTheNorthWest === "P" && rowOfKing - rowOfPieceToTheNorthWest === 1) return true;
+  else return false;
+}
+
+function getRowOfChessPiece(board, piece) {
+  for (let row = 0; row < board.length; row += 1) {
+    for (let column = 0; column < board[row].length; column += 1) {
+      if (board[row][column] === piece) return row;
+    }
+  }
+  return -1;
+}
+
 module.exports = {
   whatDoesTheKingSeeInTheEast,
   whatDoesTheKingSeeInTheWest,
@@ -72,5 +92,6 @@ module.exports = {
   canKingBeTakenByPieceFromCardinalDirection,
   canKingBeTakenFromTheEast,
   canKingBeTakenFromTheWest,
-  canKingBeTakenFromTheNorth
+  canKingBeTakenFromTheNorth,
+  canKingBeTakenFromTheNorthWest
 };

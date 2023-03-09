@@ -290,8 +290,19 @@
 ✔️Rook? Yes
 ✔️Queen? Yes
 
-### What does the king at d4 see north west?
+### What does the king at D4 see north west?
 
 ✔️Nothing to the north west --> nothing
-✔️A bishop at c3 --> bishop
-A bishop at a1 --> bishop
+✔️A bishop at C3 --> bishop
+✔️A bishop at A1 --> bishop
+✔️A bishop at B2, pawn at A1 --> bishop
+
+### Can the king at D4 be taken from the north west?
+
+✔️Bishop? Yes
+✔️Queen? Yes
+✔️Pawn at C3? Yes
+✔️Pawn at B2? No
+Pawn at B2, Pawn at E8, Pawn at C1? No
+✔️Rook? No
+
