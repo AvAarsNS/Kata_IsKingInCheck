@@ -66,12 +66,35 @@ function canKingBeTakenFromTheNorth(board, rowOfKing, columnOfKing) {
     return canKingBeTakenByPieceFromCardinalDirection(pieceToTheNorth);
 }
 
-function canKingBeTakenFromTheNorthWest(board, rowOfKing, columnOfKing) {
+function canKingBeTakenFromTheNorthWestDiagonal(board, rowOfKing, columnOfKing) {
   const pieceToTheNorthWest = whatDoesTheKingSeeInTheNorthWest( board, rowOfKing, columnOfKing);
   const rowOfPieceToTheNorthWest = getRowOfChessPiece(board, pieceToTheNorthWest);
   if (pieceToTheNorthWest === "B" || pieceToTheNorthWest === "Q") return true;
   else if (pieceToTheNorthWest === "P" && rowOfKing - rowOfPieceToTheNorthWest === 1) return true;
   else return false;
+}
+// TODO: remove the check on knight and place this in the general is king  in check function
+function canKingBeTakenFromTheNorthWest(board, rowOfKing, columnOfKing) {
+  return canKingBeTakenFromTheNorth(board, rowOfKing, columnOfKing) || canKingBeTakenFromTheNorthWestDiagonal(board, rowOfKing, columnOfKing) || canKingBeTakenFromTheWest(board, rowOfKing, columnOfKing) || canKingBeTakenByKnight(board, rowOfKing, columnOfKing);
+}
+
+function canKingBeTakenByKnight(board, rowOfKing, columnOfKing) {
+  const knightMoves = [
+    [rowOfKing - 2, columnOfKing - 1],
+    [rowOfKing - 2, columnOfKing + 1],
+    [rowOfKing - 1, columnOfKing - 2],
+    [rowOfKing - 1, columnOfKing + 2],
+    [rowOfKing + 1, columnOfKing - 2],
+    [rowOfKing + 1, columnOfKing + 2],
+    [rowOfKing + 2, columnOfKing - 1],
+    [rowOfKing + 2, columnOfKing + 1],
+  ];
+  for (let i = 0; i < knightMoves.length; i += 1) {
+    const row = knightMoves[i][0];
+    const column = knightMoves[i][1];
+    if (board[row] && board[row][column] === "N") return true;
+  }
+  return false;
 }
 
 function getRowOfChessPiece(board, piece) {
@@ -93,5 +116,6 @@ module.exports = {
   canKingBeTakenFromTheEast,
   canKingBeTakenFromTheWest,
   canKingBeTakenFromTheNorth,
-  canKingBeTakenFromTheNorthWest
+  canKingBeTakenFromTheNorthWestDiagonal,
+  canKingBeTakenFromTheNorthWest,
 };

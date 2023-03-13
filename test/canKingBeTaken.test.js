@@ -8,6 +8,7 @@ const {
   canKingBeTakenFromTheEast,
   canKingBeTakenFromTheWest,
   canKingBeTakenFromTheNorth,
+  canKingBeTakenFromTheNorthWestDiagonal,
   canKingBeTakenFromTheNorthWest,
 } = require("../src/canKingBeTaken");
 
@@ -553,7 +554,7 @@ describe("This test suite looks whether for a given chessboard, the king is in c
         const rowOfKing = 3;
         const columnOfKing = 3;
         expect(
-          canKingBeTakenFromTheNorthWest(board, rowOfKing, columnOfKing)
+          canKingBeTakenFromTheNorthWestDiagonal(board, rowOfKing, columnOfKing)
         ).toEqual(true);
       });
       it("a 👩‍🦳👑, yes", () => {
@@ -570,7 +571,7 @@ describe("This test suite looks whether for a given chessboard, the king is in c
         const rowOfKing = 3;
         const columnOfKing = 3;
         expect(
-          canKingBeTakenFromTheNorthWest(board, rowOfKing, columnOfKing)
+          canKingBeTakenFromTheNorthWestDiagonal(board, rowOfKing, columnOfKing)
         ).toEqual(true);
       });
       it("a rook, no", () => {
@@ -587,7 +588,7 @@ describe("This test suite looks whether for a given chessboard, the king is in c
         const rowOfKing = 3;
         const columnOfKing = 3;
         expect(
-          canKingBeTakenFromTheNorthWest(board, rowOfKing, columnOfKing)
+          canKingBeTakenFromTheNorthWestDiagonal(board, rowOfKing, columnOfKing)
         ).toEqual(false);
       });
       it("a pawn at C3, yes", () => {
@@ -604,7 +605,7 @@ describe("This test suite looks whether for a given chessboard, the king is in c
         const rowOfKing = 3;
         const columnOfKing = 3;
         expect(
-          canKingBeTakenFromTheNorthWest(board, rowOfKing, columnOfKing)
+          canKingBeTakenFromTheNorthWestDiagonal(board, rowOfKing, columnOfKing)
         ).toEqual(true);
       });
       it("a pawn at B2, no, the pawn is too far away :(", () => {
@@ -621,8 +622,110 @@ describe("This test suite looks whether for a given chessboard, the king is in c
         const rowOfKing = 3;
         const columnOfKing = 3;
         expect(
+          canKingBeTakenFromTheNorthWestDiagonal(board, rowOfKing, columnOfKing)
+        ).toEqual(false);
+      });
+      it("Pawn at B2, Pawn at E8, Pawn at C1? No", () => {
+        const board = [
+          [" ", " ", "P", " ", " ", " ", " ", " "],
+          [" ", "P", " ", " ", " ", " ", " ", " "],
+          [" ", "N", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", "K", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", "P", " ", " ", " "],
+        ];
+        const rowOfKing = 3;
+        const columnOfKing = 3;
+        expect(
+          canKingBeTakenFromTheNorthWestDiagonal(board, rowOfKing, columnOfKing)
+        ).toEqual(false);
+      });
+      it("Knight at C2? Yes", () => {
+        const board = [
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", "N", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", "K", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+        ];
+        const rowOfKing = 3;
+        const columnOfKing = 3;
+        expect(
+          canKingBeTakenFromTheNorthWest(board, rowOfKing, columnOfKing)
+        ).toEqual(true);
+      });
+      it("Knight at B3? Yes", () => {
+        const board = [
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", "N", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", "K", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+        ];
+        const rowOfKing = 3;
+        const columnOfKing = 3;
+        expect(
+          canKingBeTakenFromTheNorthWest(board, rowOfKing, columnOfKing)
+        ).toEqual(true);
+      });
+      it("Knight at A1? No", () => {
+        const board = [
+          ["N", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", "K", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+        ];
+        const rowOfKing = 3;
+        const columnOfKing = 3;
+        expect(
           canKingBeTakenFromTheNorthWest(board, rowOfKing, columnOfKing)
         ).toEqual(false);
+      });
+      it("King at A1 and no knights? No", () => {
+        const board = [
+          ["K", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+        ];
+        const rowOfKing = 3;
+        const columnOfKing = 3;
+        expect(
+          canKingBeTakenFromTheNorthWest(board, rowOfKing, columnOfKing)
+        ).toEqual(false);
+      });
+      it("Knight at E6? Yes", () => {
+        const board = [
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", "K", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", "N", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+        ];
+        const rowOfKing = 3;
+        const columnOfKing = 3;
+        expect(
+          canKingBeTakenFromTheNorthWest(board, rowOfKing, columnOfKing)
+        ).toEqual(true);
       });
   });
   });
