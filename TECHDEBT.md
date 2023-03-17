@@ -12,6 +12,7 @@ K: A1, P: C2
 
  # tech debt
  - constantes in test file op hoger niveau zetten
+ - add an example chess board in the test suite, so the reader can visualize the moves described by coordinates
 
 
 

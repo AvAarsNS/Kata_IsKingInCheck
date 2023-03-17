@@ -312,8 +312,11 @@
 ✔️Knight at A1? No
 ✔️King at A1 and no knight? No
 ✔️Knight at C2? Yes
-🎈Knight at E6? Yes
-King at A1, Knight at B3? Yes
+✔ Knight at E6? Yes
+✔ King at A1, Knight at B3? Yes
+
+
+### BDD scenario's
 
 
 

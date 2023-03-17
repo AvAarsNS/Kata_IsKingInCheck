@@ -9,7 +9,7 @@ const {
   canKingBeTakenFromTheWest,
   canKingBeTakenFromTheNorth,
   canKingBeTakenFromTheNorthWestDiagonal,
-  canKingBeTakenFromTheNorthWest,
+  canKingBeTakenByKnight
 } = require("../src/canKingBeTaken");
 
 describe("This test suite looks whether for a given chessboard, the king is in check", () => {
@@ -394,8 +394,8 @@ describe("This test suite looks whether for a given chessboard, the king is in c
           ).toEqual(false);
         });
       });
-      describe('The king is in check from the north when', () => {
-        it('there is a rook north of the King', () => {
+      describe("The king is in check from the north when", () => {
+        it("there is a rook north of the King", () => {
           const board = [
             [" ", " ", " ", " ", " ", " ", " ", " "],
             [" ", " ", " ", "R", " ", " ", " ", " "],
@@ -408,7 +408,9 @@ describe("This test suite looks whether for a given chessboard, the king is in c
           ];
           const rowOfKing = 3;
           const columnOfKing = 3;
-          expect(canKingBeTakenFromTheNorth(board, rowOfKing, columnOfKing)).toEqual(true);
+          expect(
+            canKingBeTakenFromTheNorth(board, rowOfKing, columnOfKing)
+          ).toEqual(true);
         });
         it("there is a queen north of the King", () => {
           const board = [
@@ -469,8 +471,8 @@ describe("This test suite looks whether for a given chessboard, the king is in c
     });
   });
   describe("We want to determine if the king is in check from the north west. The king is at D4", () => {
-    describe('We first check what chess piece the king sees looking to the north west. If on the north west there is', () => {
-      it('nothing, the king sees an empty void ', () => {
+    describe("We first check what chess piece the king sees looking to the north west. If on the north west there is", () => {
+      it("nothing, the king sees an empty void ", () => {
         const board = [
           [" ", " ", " ", " ", " ", " ", " ", " "],
           [" ", " ", " ", " ", " ", " ", " ", " "],
@@ -487,7 +489,7 @@ describe("This test suite looks whether for a given chessboard, the king is in c
           whatDoesTheKingSeeInTheNorthWest(board, rowOfKing, columnOfKing)
         ).toEqual(" ");
       });
-      it('a bishop at C3, the king sees a bishop ', () => {
+      it("a bishop at C3, the king sees a bishop ", () => {
         const board = [
           [" ", " ", " ", " ", " ", " ", " ", " "],
           [" ", " ", " ", " ", " ", " ", " ", " "],
@@ -539,7 +541,7 @@ describe("This test suite looks whether for a given chessboard, the king is in c
         ).toEqual("B");
       });
     });
-  describe('We then determine if the king can be taken', () => {
+    describe("We then determine if the king can be taken", () => {
       it("a bishop, yes", () => {
         const board = [
           [" ", " ", " ", " ", " ", " ", " ", " "],
@@ -656,7 +658,7 @@ describe("This test suite looks whether for a given chessboard, the king is in c
         const rowOfKing = 3;
         const columnOfKing = 3;
         expect(
-          canKingBeTakenFromTheNorthWest(board, rowOfKing, columnOfKing)
+          canKingBeTakenByKnight(board, rowOfKing, columnOfKing)
         ).toEqual(true);
       });
       it("Knight at B3? Yes", () => {
@@ -673,7 +675,7 @@ describe("This test suite looks whether for a given chessboard, the king is in c
         const rowOfKing = 3;
         const columnOfKing = 3;
         expect(
-          canKingBeTakenFromTheNorthWest(board, rowOfKing, columnOfKing)
+          canKingBeTakenByKnight(board, rowOfKing, columnOfKing)
         ).toEqual(true);
       });
       it("Knight at A1? No", () => {
@@ -690,7 +692,7 @@ describe("This test suite looks whether for a given chessboard, the king is in c
         const rowOfKing = 3;
         const columnOfKing = 3;
         expect(
-          canKingBeTakenFromTheNorthWest(board, rowOfKing, columnOfKing)
+          canKingBeTakenByKnight(board, rowOfKing, columnOfKing)
         ).toEqual(false);
       });
       it("King at A1 and no knights? No", () => {
@@ -707,7 +709,7 @@ describe("This test suite looks whether for a given chessboard, the king is in c
         const rowOfKing = 3;
         const columnOfKing = 3;
         expect(
-          canKingBeTakenFromTheNorthWest(board, rowOfKing, columnOfKing)
+          canKingBeTakenByKnight(board, rowOfKing, columnOfKing)
         ).toEqual(false);
       });
       it("Knight at E6? Yes", () => {
@@ -724,9 +726,31 @@ describe("This test suite looks whether for a given chessboard, the king is in c
         const rowOfKing = 3;
         const columnOfKing = 3;
         expect(
-          canKingBeTakenFromTheNorthWest(board, rowOfKing, columnOfKing)
+          canKingBeTakenByKnight(board, rowOfKing, columnOfKing)
         ).toEqual(true);
       });
+      it("Knight at B3? Yes", () => {
+        const board = [
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", "N", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", "K", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+          [" ", " ", " ", " ", " ", " ", " ", " "],
+        ];
+        const rowOfKing = 3;
+        const columnOfKing = 3;
+        expect(
+          canKingBeTakenByKnight(board, rowOfKing, columnOfKing)
+        ).toEqual(true);
+      });
+    });
   });
+  describe('The knight is an odd piece. It is able to capture pieces with an L-shaped move.', () => {
+    it('Given the knight is at C6. When he moves up right he jumps C7, C8and lands on D8.', () => {
+      
+    });
   });
 });
