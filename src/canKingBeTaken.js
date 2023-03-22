@@ -73,10 +73,6 @@ function canKingBeTakenFromTheNorthWestDiagonal(board, rowOfKing, columnOfKing) 
   else if (pieceToTheNorthWest === "P" && rowOfKing - rowOfPieceToTheNorthWest === 1) return true;
   else return false;
 }
-// TODO: remove the check on knight and place this in the general is king  in check function
-function canKingBeTakenFromTheNorthWest(board, rowOfKing, columnOfKing) {
-  return canKingBeTakenFromTheNorth(board, rowOfKing, columnOfKing) || canKingBeTakenFromTheNorthWestDiagonal(board, rowOfKing, columnOfKing) || canKingBeTakenFromTheWest(board, rowOfKing, columnOfKing) || canKingBeTakenByKnight(board, rowOfKing, columnOfKing);
-}
 
 function canKingBeTakenByKnight(board, rowOfKing, columnOfKing) {
   const knightMoves = [
@@ -117,5 +113,5 @@ module.exports = {
   canKingBeTakenFromTheWest,
   canKingBeTakenFromTheNorth,
   canKingBeTakenFromTheNorthWestDiagonal,
-  canKingBeTakenFromTheNorthWest,
+  canKingBeTakenByKnight
 };
